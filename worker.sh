@@ -24,13 +24,14 @@ while :; do
     flock 9
     n=1
     while :; do
-        if   [ "$n" -lt 10 ];  then name=00$n
-        elif [ "$n" -lt 100 ]; then name=0$n
-        else                        name=$n
+           if   [ "$n" -lt 10 ];  then cand=00$n
+           elif [ "$n" -lt 100 ]; then cand=0$n
+           else                        cand=$n
         fi
-        [ -e "$dir/$name" ] || break
+      [ -e "$dir/$cand" ] || break
         n=$((n + 1))
     done
+   name=$cand
     echo "$id $count" > "$dir/$name"
     flock -u 9
 
